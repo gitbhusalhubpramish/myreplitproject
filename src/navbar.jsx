@@ -8,6 +8,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="other">
                 <ul>
+                    
                     <li className="meanuicon">
                         {/* Button to toggle menu visibility */}
                         <button type="button" className="meanuicon">
