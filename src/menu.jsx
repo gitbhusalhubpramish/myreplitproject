@@ -1,10 +1,9 @@
 import React from "react";
 import "./index";
 import "./App.css";
-export const menu = () =>{
+const Menu = () =>{
   return(
-    <div className="menu">
-      <ul>
+      <ul className="menu">
         <li>
           <a href="#">you</a>
         </li>
@@ -15,7 +14,6 @@ export const menu = () =>{
           <a href="#">liked project</a>
         </li>
       </ul>
-    </div>
   )
 }
-export default menu;
+export default Menu;
