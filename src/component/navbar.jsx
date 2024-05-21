@@ -12,7 +12,7 @@ const Navbar = ({ toggleMenu }) => {
             <Menubtn toggleMenu={toggleMenu} />
           </li>
         </ul>
-        <ul className="web">
+        <ul id="webnamepar" className="web">
           <li>webname</li>
         </ul>
         <ul>
@@ -31,6 +31,16 @@ const Navbar = ({ toggleMenu }) => {
         </li>
         <li>
           <a href="#">Contact</a>
+        </li>
+        <li>
+          <button id="singinpar" className="bg-deepskyblue singinuppar border-radius flex">
+            <a href="#" id="singin" className="text-decoration-none color-white singinup flex">sign in</a>
+          </button>
+        </li>
+        <li>
+          <button id="singuppar" className="bg-deepskyblue singinuppar border-radius flex">
+            <a href="#" id="singup" className="text-decoration-none color-white singinup flex">sign up</a>
+          </button>
         </li>
       </ul>
     </nav>

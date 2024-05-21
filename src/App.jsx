@@ -1,18 +1,16 @@
-
-import React from 'react'
+import React from "react";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ComponentInApp from "./component/componentinapp";
+//src/component/componentinapp.jsx
 
-const page = () => {
+const page = ({showMenu}) => {
   
   return (
-    <div className='main'>
+    <div className={`${showMenu ? "menuopenforapp " : ""}main`}>
       <div className='contain'>
-        <p className='text'>
-          
-      </p>
+        <ComponentInApp />
       </div>
-      
-      
     </div>
   )
 }

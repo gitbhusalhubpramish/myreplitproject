@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import App from './App';
-import Navbar from './component/navbar';
+import React, { useState } from "react";
+import App from "./App";
+import Navbar from "./component/navbar";
 import "./App.css";
-import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
-import Menu from './component/menu';
+import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+import Menu from "./component/menu";
+import ComponentInApp from "./component/componentinapp";
 
 const Root = () => {
 	const [showMenu, setShowMenu] = useState(true);
@@ -15,15 +16,24 @@ const Root = () => {
 
 	return (
 		<React.StrictMode>
-			<div className="root">
-				<div id="menu-root">
-					{showMenu && <Menu />}
-				</div>
+			<div
+				className="root "
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
 				<Navbar toggleMenu={toggleMenu} />
-				<App />
+				<div id="menuandapppar">
+					<div id="menu-root" className={`${showMenu ? "menuopen" : ""}`}>
+						{showMenu && <Menu />}
+					</div>
+					<App showMenu={showMenu} />
+				</div>
 			</div>
 		</React.StrictMode>
 	);
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(<Root />);
+ReactDOM.createRoot(document.getElementById("root")).render(<Root />);
