@@ -9,11 +9,10 @@ def run_git_commands():
         subprocess.run(['git', 'commit', '-m', 'first commit'], check=True)
 
         # Run `git push`
-        print("Running `git push`...")
         subprocess.run(['git', 'push'], check=True)
 
     except subprocess.CalledProcessError as e:
-       
+        print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     while(True):
