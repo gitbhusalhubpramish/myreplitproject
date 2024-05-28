@@ -19,4 +19,5 @@ def run_git_commands():
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    run_git_commands()
+    while(True):
+        run_git_commands()
