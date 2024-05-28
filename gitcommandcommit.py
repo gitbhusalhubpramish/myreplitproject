@@ -14,7 +14,6 @@ def run_git_commands():
         print("Running `git push`...")
         subprocess.run(['git', 'push'], check=True)
 
-        print("All commands executed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
 
