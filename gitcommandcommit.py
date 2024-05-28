@@ -16,7 +16,7 @@ def has_changes_to_commit():
 
 def run_git_commands(commit_message):
     if not has_changes_to_commit():
-        print("No changes to commit.")
+        
         return
 
     try:
