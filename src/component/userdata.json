@@ -1,0 +1,6 @@
+{
+    "name": "User Data",
+    "description": "This component allows you to store and retrieve user data.",
+    
+    "dependencies": [],
+}

@@ -3,9 +3,9 @@ import App from "./App";
 import Navbar from "./component/navbar";
 import "./App.css";
 import ReactDOM from "react-dom";
-import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Menu from "./component/menu";
-import ComponentInApp from "./component/componentinapp";
+import SignInSignUp from "./component/singinup";
 
 const Root = () => {
 	const [showMenu, setShowMenu] = useState(true);
@@ -13,25 +13,36 @@ const Root = () => {
 	const toggleMenu = () => {
 		setShowMenu(!showMenu);
 	};
-
+	const routers = createBrowserRouter([
+		{
+			path: "/singinup",
+			element: <SignInSignUp />,
+		},
+		{
+			path: "/",
+			element: (
+				<div
+					className="root "
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+					}}
+				>
+					<Navbar toggleMenu={toggleMenu} />
+					<div id="menuandapppar">
+						<div id="menu-root" className={`${showMenu ? "menuopen" : ""}`}>
+							{showMenu && <Menu />}
+						</div>
+						<App showMenu={showMenu} />
+					</div>
+				</div>
+			),
+		},
+	]);
 	return (
 		<React.StrictMode>
-			<div
-				className="root "
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-				}}
-			>
-				<Navbar toggleMenu={toggleMenu} />
-				<div id="menuandapppar">
-					<div id="menu-root" className={`${showMenu ? "menuopen" : ""}`}>
-						{showMenu && <Menu />}
-					</div>
-					<App showMenu={showMenu} />
-				</div>
-			</div>
+			<RouterProvider router={routers} />
 		</React.StrictMode>
 	);
 };

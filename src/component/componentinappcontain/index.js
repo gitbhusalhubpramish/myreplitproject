@@ -1,0 +1,1 @@
+export { default as Contain1 } from "./contain1.jsx";

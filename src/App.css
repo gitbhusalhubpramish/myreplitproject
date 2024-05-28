@@ -745,7 +745,6 @@ transition: opacity 0.3s ease;
 }
 .navbar {
   background-color: #333;
-  color: white;
   text-align: center;
   display: flex;
   height: 50px;
@@ -844,7 +843,7 @@ transition: opacity 0.3s ease;
   justify-content : center;
   color : #dfd7d7;
 }
-.menubtnbody:hover{
+.menubtnbodybutton:hover{
   background-color: #2a2a2a;
 }
 .btnpar{
@@ -862,7 +861,6 @@ a:visited{
   height : 30px;
 }
 .singinup{
-  color : white;
 }
 .singinup:visited{
   color : white;
@@ -912,4 +910,69 @@ a:visited{
     left: 0;
     width: 150px;
   }
+}
+.title-never-gonna-give-up-you{
+  width:200; 
+  height:150;
+  margin:5px;
+}
+.project{
+  height:auto;
+}
+.project *{
+  padding:2px;
+  width:calc(100% - 4px);
+}
+.auth-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form h2 {
+  text-align: center;
+}
+
+.auth-form div {
+  margin-bottom: 15px;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.auth-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.auth-form button:hover {
+  background-color: #0056b3;
+}
+.red{
+  color:red;
 }

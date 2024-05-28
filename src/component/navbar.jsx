@@ -5,7 +5,7 @@ import Menubtn from "./menubtn.jsx";
 
 const Navbar = ({ toggleMenu }) => {
   return (
-    <nav className="navbar">
+    <nav className="navbar color-white">
       <div className="other">
         <ul className="menubtnlipar">
           <li className="menubtnpar">
@@ -33,13 +33,13 @@ const Navbar = ({ toggleMenu }) => {
           <a href="#">Contact</a>
         </li>
         <li>
-          <button id="singinpar" className="bg-deepskyblue singinuppar border-radius flex">
-            <a href="#" id="singin" className="text-decoration-none color-white singinup flex">sign in</a>
+          <button id="singinpar" className="bg-deepskyblue singinuppar border-radius flex color-white">
+            <a href="/singinup" id="singin" className="text-decoration-none color-white singinup flex color-white">sign in</a>
           </button>
         </li>
         <li>
-          <button id="singuppar" className="bg-deepskyblue singinuppar border-radius flex">
-            <a href="#" id="singup" className="text-decoration-none color-white singinup flex">sign up</a>
+          <button id="singuppar" className="bg-deepskyblue singinuppar border-radius flex color-white">
+            <a href="/singinup" id="singup" className="text-decoration-none color-white singinup flex color-white">sign up</a>
           </button>
         </li>
       </ul>
