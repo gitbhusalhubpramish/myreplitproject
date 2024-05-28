@@ -7,7 +7,6 @@ def run_git_commands():
         subprocess.run(['git', 'add', '.'], check=True)
 
         # Run `git commit -m "first commit"`
-        print('Running `git commit -m "first commit"`...')
         subprocess.run(['git', 'commit', '-m', 'first commit'], check=True)
 
         # Run `git push`
