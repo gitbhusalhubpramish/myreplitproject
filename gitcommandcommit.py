@@ -24,8 +24,7 @@ def run_git_commands(commit_message):
         print("Running `git add .`...")
         run_command(['git', 'add', '.'])
 
-        # Run `git commit -m "commit_message"`
-        print(f'Running `git commit -m "{commit_message}"`...')
+        
         run_command(['git', 'commit', '-m', commit_message])
 
         # Run `git push`
