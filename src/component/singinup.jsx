@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import { useForm } from "react-hook-form";
-import userData from "../component/userdata.json";
+import userData from "../../component/userdata.json";
 
 const SingUp = () => {
   const [loggedIn, setLoggedIn] = useState(false);
