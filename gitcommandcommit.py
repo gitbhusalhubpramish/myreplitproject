@@ -35,7 +35,7 @@ def run_git_commands(commit_message):
         print(f"An error occurred: {e.stderr}")
 
 if __name__ == "__main__":
-    while (True):
+   
      if len(sys.argv) != 2:
         print("Usage: python git_automation.py <commit_message>")
         sys.exit(1)
