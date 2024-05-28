@@ -1,35 +1,43 @@
+// SingUp.jsx
 import React, { useState } from "react";
 import "../App.css";
 import { useForm } from "react-hook-form";
-import userData from "../../component/userdata.json";
 
 const SingUp = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
 
-  const handleSignUp = (data) => {
-    if (data.email.includes("@")) {
-      userData.email = data.email;
-      setLoggedIn(true);
-      alert("Account created successfully!");
-    } else {
-      alert("Invalid email format. Please include '@' in the email.");
+  const handleSignUp = async (data) => {
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setLoggedIn(true);
+        alert(result.message);
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
   return (
     <>
       {loggedIn && <div>User is logged in</div>}
-
       <form onSubmit={handleSubmit(handleSignUp)}>
         <input
           placeholder="email"
-          {...register("email", {
-            required: "This field is required",
-          })}
+          {...register("email", { required: "This field is required" })}
           type="text"
         />
-        <br/>
+        <br />
         <input
           placeholder="username"
           {...register("username", {
@@ -60,19 +68,30 @@ const SingIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
 
-  const handleSignIn = (data) => {
-    if (userData.email === data.username && userData.password === data.password) {
-      setLoggedIn(true);
-      alert("Successfully logged in!");
-    } else {
-      alert("Incorrect username or password.");
+  const handleSignIn = async (data) => {
+    try {
+      const response = await fetch('/api/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setLoggedIn(true);
+        alert(result.message);
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
   return (
     <>
       {loggedIn && <div>User is logged in</div>}
-
       <form onSubmit={handleSubmit(handleSignIn)}>
         <input
           placeholder="username"
@@ -101,8 +120,7 @@ const SingIn = () => {
 };
 
 const SignInSignUp = () => {
-  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and sign-up
-  const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
+  const [isLogin, setIsLogin] = useState(true);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);

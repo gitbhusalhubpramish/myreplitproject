@@ -1,32 +1,40 @@
-import express  from "express"
-import cors from "cors"
-import bodyParser from "body-parser"
-const app = express()
-const port = 3000
+// server.js
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const app = express();
+const port = 3000;
 
-app.use(cors()) 
-app.use(bodyParser.json())
+app.use(express.json());
 
-app.get('/', (req, res) => { 
-    res.send('Hello World!')
-})
-app.post('/login', (req, res) => {
-  // Your login logic here
+const userDataPath = path.join(__dirname, 'userdata.json');
+
+app.post('/api/signup', (req, res) => {
+  const { email, username, password } = req.body;
+  const userData = { email, username, password };
+  fs.writeFile(userDataPath, JSON.stringify({ userdata: [userData] }, null, 2), (err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to save user data' });
+    }
+    res.status(200).json({ message: 'User registered successfully' });
+  });
 });
 
-app.post('/signup', (req, res) => {
-  // Your signup logic here
+app.post('/api/signin', (req, res) => {
+  const { username, password } = req.body;
+  fs.readFile(userDataPath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to read user data' });
+    }
+    const userData = JSON.parse(data).userdata.find(user => user.username === username && user.password === password);
+    if (userData) {
+      res.status(200).json({ message: 'Successfully logged in' });
+    } else {
+      res.status(401).json({ message: 'Incorrect username or password' });
+    }
+  });
 });
-
-app.get('/check-username', (req, res) => {
-  // Your check-username logic here
-});
-
-app.post('/', (req, res) => { 
-    console.log(req.body)
-    res.send('Hello World!')
-})
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Server running at http://localhost:${port}`);
+});
