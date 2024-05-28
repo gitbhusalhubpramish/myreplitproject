@@ -28,7 +28,6 @@ def run_git_commands(commit_message):
         run_command(['git', 'commit', '-m', commit_message])
 
         # Run `git push`
-        print("Running `git push`...")
         run_command(['git', 'push'])
 
         print("All commands executed successfully.")
