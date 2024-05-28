@@ -3,7 +3,6 @@ import subprocess
 def run_git_commands():
     try:
         # Run `git add .`
-        print("Running `git add .`...")
         subprocess.run(['git', 'add', '.'], check=True)
 
         # Run `git commit -m "first commit"`
