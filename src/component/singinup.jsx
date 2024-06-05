@@ -1,53 +1,61 @@
 // singinup.jsx
 
 import React, { useState } from "react";
+// import express from 'express';
+// const app = express();
 import "../App.css";
 import { useForm } from "react-hook-form";
+// import "../../backend/server.js";
+// app.listen(port, () => {
+//   console.log(`Backend server listening at http://localhost:${port}`);
+// });
+const SignIn = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-const SignInSignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    setError,    
-    formState: { errors, isSubmitting },
-  } = useForm();
-
-  const delay = (d)=>{
-    return new Promise((resolve, reject)=>{
-      setTimeout(() => {
-        resolve()
-      }, d * 1000);
-    })
-  }
-
-  const onSubmit = async (data) => {
-    
-    let r = await fetch("http://localhost:3000/", {method: "POST",  headers: {
-      "Content-Type": "application/json", 
-    }, body: JSON.stringify(data)})
-    let res = await r.text()
-    console.log(data, res)
-    
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch('http://localhost:3000/users', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
 
   return (
-    <> 
-    {isSubmitting && <div>Loading...</div>}
-       <div className="container">
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <input placeholder='username' {...register("username", { required: {value: true, message: "This field is required"}, minLength: {value: 3, message: "Min length is 3"}, maxLength: {value: 15, message: "Max length is 8"} })} type="text"   />
-          {errors.username && <div className='red'>{errors.username.message}</div>}
-          <br />
-          <input placeholder='password'  {...register("password", {minLength: {value: 7, message: "Min length of password is 7"},})} type="password"/>
-          {errors.password && <div className='red'>{errors.password.message}</div>}
-          <br />
-          <input disabled={isSubmitting} type="submit" value="Submit" />
-          {errors.myform && <div className='red'>{errors.myform.message}</div>}
-          {errors.blocked && <div className='red'>{errors.blocked.message}</div>}
-        </form>
-       </div>
-    </>
-  )
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+        required
+      />
+      <br/>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+        required
+      />
+      <br/>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        required
+      />
+      <br/>
+      <button type="submit">Sign Up</button>
+    </form>
+  );
 };
 
-export default SignInSignUp;
+export default SignIn;

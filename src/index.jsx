@@ -5,7 +5,7 @@ import "./App.css";
 import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Menu from "./component/menu";
-import SignInSignUp from "./component/singinup";
+import SignIn from "./component/singinup";
 
 const Root = () => {
 	const [showMenu, setShowMenu] = useState(true);
@@ -16,7 +16,7 @@ const Root = () => {
 	const routers = createBrowserRouter([
 		{
 			path: "/singinup",
-			element: <SignInSignUp />,
+			element: <SignIn />,
 		},
 		{
 			path: "/",

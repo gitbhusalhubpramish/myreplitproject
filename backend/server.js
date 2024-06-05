@@ -1,22 +1,24 @@
-const express = require('express');
-const cors = require('cors'); // Install cors
-
-const app = express();
+// backend/server.js
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import usersRouter from './router/user.js';
 const port = 3000;
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-// Enable CORS for all origins
-app.use(cors()); 
+mongoose.connect('mongodb://localhost:27017/mydatabase');
 
-app.use(express.json()); // To parse JSON request bodies
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Database'));
 
-// Your backend routes 
-app.post('/', (req, res) => {
-    // Process the request body (data)
-    const data = req.body;
-    console.log("Received data:", data);
+app.use('/users', usersRouter); 
 
-    // Respond to the frontend
-    res.send("Data received successfully");
+// Fetch all users and send as response
+app.get('/users', async (req, res) => {
+  res.send("hello")
 });
 
 app.listen(port, () => {
