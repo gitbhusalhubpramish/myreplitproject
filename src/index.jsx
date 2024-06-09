@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import App from "./App";
 import Navbar from "./component/navbar";
 import "./App.css";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Menu from "./component/menu";
 import SignIn from "./component/singinup";

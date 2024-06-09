@@ -1,58 +1,53 @@
-// singinup.jsx
-
-import React, { useState } from "react";
-// import express from 'express';
-// const app = express();
+import React, { useState, useEffect } from "react";
 import "../App.css";
-import { useForm } from "react-hook-form";
-// import "../../backend/server.js";
-// app.listen(port, () => {
-//   console.log(`Backend server listening at http://localhost:${port}`);
-// });
-const SignIn = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import axios from 'axios';
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('http://localhost:3000/users', { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, password }),
-    });
-    const data = await response.json();
-    console.log(data);
+const SignIn = () => {
+  // Use useState hook to manage state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    console.log(name, email, password); // Log the state
   };
 
+  useEffect(() => {
+    axios.get('http://localhost:5000/api')
+      .then(response => {
+        setMessage(response.data.message);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the data!', error);
+      });
+  }, []);
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={name} 
+        onChange={(e) => setName(e.target.value)} // Update state using setName
         placeholder="Name"
         required
       />
-      <br/>
+      <br />
       <input
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)} // Update state using setEmail
         placeholder="Email"
         required
       />
-      <br/>
+      <br />
       <input
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)} // Update state using setPassword
         placeholder="Password"
         required
       />
-      <br/>
+      <br />
       <button type="submit">Sign Up</button>
     </form>
   );
