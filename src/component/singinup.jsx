@@ -14,7 +14,7 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api')
+    axios.get('http://localhost:3000/')
       .then(response => {
         setMessage(response.data.message);
       })
