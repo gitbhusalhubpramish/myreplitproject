@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
 import axios from "axios";
-
+// import "../../backend/server.js";
 const SignIn = () => {
-  // Use useState hook to manage state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
-    console.log(name, email, password); // Log the state
+    console.log(name, password);
   };
-
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   useEffect(() => {
     axios
       .get("http://localhost:3000/")
@@ -23,7 +18,6 @@ const SignIn = () => {
         console.error("There was an error fetching the data!", error);
       });
   }, []);
-  
   function togglePassword() {
     const passwordField = document.getElementById("password");
     const button = passwordField.nextElementSibling;
@@ -47,18 +41,6 @@ const SignIn = () => {
             value={name}
             onChange={(e) => setName(e.target.value)} // Update state using setName
             placeholder="Name"
-            className="w-56"
-            required
-          />
-        </li>
-
-        <br />
-        <li className="border-2 border-black rounded-md m-2 flex bg-white w-56">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} // Update state using setEmail
-            placeholder="Email"
             className="w-56"
             required
           />
@@ -97,5 +79,4 @@ const SignIn = () => {
     </div>
   );
 };
-
 export default SignIn;

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
 import axios from "axios";
-
-const SignIn = () => {
+const SignUp = ()=>{
   // Use useState hook to manage state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +21,7 @@ const SignIn = () => {
         console.error("There was an error fetching the data!", error);
       });
   }, []);
-  
+
   function togglePassword() {
     const passwordField = document.getElementById("password");
     const button = passwordField.nextElementSibling;
@@ -95,7 +93,6 @@ const SignIn = () => {
         </button>
       </form>
     </div>
-  );
-};
-
-export default SignIn;
+  );  
+}
+export default SignUp;
